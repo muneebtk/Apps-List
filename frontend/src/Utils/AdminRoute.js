@@ -5,7 +5,7 @@ import AppContext from '../Context/AppContext'
 function AdminRoute() {
     let {user} = useContext(AppContext);
   return (
-    user&&user.is_super_admin?<Outlet/>:<Navigate replace to='/' />
+    user&&user.is_super_admin?<Outlet/>:<Navigate replace to='/login/' />
   )
 }
 

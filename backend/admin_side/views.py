@@ -74,7 +74,7 @@ def submit_app(request):
     points=data.get('points')
     cat=Category.objects.get(name=category)
     sub_cat=get_object_or_404(SubCategory,name=sub_category)
-    if SubCategory.objects.filter(slug=slugify(app_name)).exists():
+    if Apps.objects.filter(slug=slugify(app_name)).exists():
         return Response('App already exists')
     Apps.objects.create(
         app_name=app_name,

@@ -27,6 +27,9 @@ function Sidebar() {
             <Button>
               <AddIcon />
               Add apps{" "}
+            </Button><br/><br/>
+            <Button onClick={logoutUser}>
+              <LogoutIcon /> logout
             </Button>
           </>
         ) : (
@@ -34,6 +37,7 @@ function Sidebar() {
             <Button onClick={() => navigate("/")}>
               <HomeIcon  /> Home
             </Button>
+            
             <br />
             <br />
             <Button onClick={()=>navigate('/home-page/profile')}>

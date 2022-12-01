@@ -7,7 +7,7 @@ function UserRoute() {
   return user && !user.is_super_admin ? (
     <Outlet />
   ) : (
-    <Navigate replace to="admin_panel/" />
+    <Navigate replace to="/login/" />
   );
 }
 

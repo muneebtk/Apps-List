@@ -13,6 +13,7 @@ function Home() {
   let [appLink, setAppLink] = useState("");
   let [points, setPoints] = useState();
   let [fieldError, setFieldError] = useState("");
+  let [submitRes,setSubmitRes] = useState('');
   let AddApp = () => {
     axios
       .get("admin_panel/get_category/")
@@ -40,7 +41,11 @@ function Home() {
         category: category,
         sub_category: subCategory,
         points: points,
-      });
+      }).then((response)=>{
+        setSubmitRes(response.data)
+      }).catch((error)=>{
+
+      })
     }
   };
   return (
@@ -54,6 +59,8 @@ function Home() {
           {fieldError}
         </Alert>
       )}
+      {submitRes&&<Alert severity="success">{submitRes}</Alert>}
+
       <form onSubmit={SubmitApp}>
         <TextField
           onChange={(e) => setAppName(e.target.value)}

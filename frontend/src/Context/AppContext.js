@@ -24,7 +24,6 @@ export const AppProvider = ({children})=>{
          email:email,
          password:password,
         }).then((response)=>{
-        console.log(response.data);
         setAuthTokens(response.data)
         setUser(jwt_decode(response.data.access))
         if (user.is_super_admin){
@@ -32,18 +31,14 @@ export const AppProvider = ({children})=>{
         }else{
             navigate('/')
         }
-        
 
         localStorage.setItem('authTokens',JSON.stringify(response.data))
         }).catch((error)=>{
-            console.log(error.response.data,'eror');
-            setLoginRes(error.response.data)
-            console.log('llll',loginRes,'login res');
+            setLoginRes(error.data)
         })
      }
      // Signup user
      let SignupUser = (firstName,lastName,email,password,confirmPassword)=>{ 
-        console.log('signup context');
         axios.post('signup/',{
           first_name:firstName,
           last_name:lastName,
@@ -53,12 +48,10 @@ export const AppProvider = ({children})=>{
         }).then((response)=>{
             if (response.status===200){
             setSignupRes(response.data)
-            console.log(response.data);
             navigate('login/')
         }
         }).catch((error)=>{
             setSignupRes(error.data)        
-            console.log(error);
         })
       }
       let logoutUser = ()=>{
